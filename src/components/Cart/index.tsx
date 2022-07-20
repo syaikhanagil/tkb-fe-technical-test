@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Icon from '../Icon';
 
 const Cart = () => {
-
+    const [total, setTotal] = useState(0)
     const items = useSelector((state: any) => state.cart.items);
+
+    useEffect(() => {
+        if (items.length > 0) {
+            let ttl = 0;
+            // eslint-disable-next-line no-plusplus
+            for (let i = 0; i < items.length; i++) {
+                ttl += items[i].price;
+                setTotal(ttl);
+            }
+        }
+    }, [items]);
 
     return (
         <div className="cart-content">
@@ -49,7 +60,7 @@ const Cart = () => {
                     <div className="col-8">
                         <div className="charge">
                             <span>Bayar </span>
-                            <span id="total">{items.length}</span>
+                            <span id="total">{`Rp.  ${new Intl.NumberFormat().format(total)}`}</span>
                         </div>
                     </div>
                 </div>
