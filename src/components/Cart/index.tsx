@@ -26,8 +26,8 @@ const Cart = () => {
                     </div>
                     <div className="col-8">
                         <div className="charge">
-                            <span>Bayar</span>
-                            <span>{items.length}</span>
+                            <span>Bayar </span>
+                            <span id="total">{items.length}</span>
                         </div>
                     </div>
                 </div>

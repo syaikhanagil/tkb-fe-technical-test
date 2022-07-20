@@ -42,11 +42,10 @@ const Home = () => {
                             <div className="product-list">
                                 {productList.map((i: any, idx: any) => {
                                     return (
-                                        <ProductCard key={idx} thumb={thumbnail} title={i.name} price={i.price} />
+                                        <ProductCard key={idx} productId={i.id} thumb={thumbnail} title={i.name} price={i.price} />
                                     )
                                 })}
                             </div>
-
                         </div>
                         <div className="col-12 col-md-4">
                             <div className="cart-container">
