@@ -185,7 +185,37 @@ body {
         .cart-item {
             position: relative;
             display: block;
-            padding: 0 1rem;
+            width: 100%;
+            height: auto;
+            padding: 5px 1rem;
+            
+            p {
+                position: relative;
+                font-size: 14px;
+                display: block;
+                padding: 0;
+                margin: 0;
+            }
+
+            .item-name {
+                font-weight: 600;
+            }
+
+            .qty-container {
+                position: relative;
+                display: flex;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid rgba(0, 0, 0, .08);
+
+                [class*=qty-] {
+                    background: #f3f3f3;
+                    padding: 5px;
+                    cursor: pointer;
+                }
+            }
         }
 
         .no-item {
@@ -213,6 +243,7 @@ body {
         }
     }
 }
+
 
 .product-search {
     position: relative;

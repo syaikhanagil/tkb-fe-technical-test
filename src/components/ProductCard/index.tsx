@@ -18,6 +18,7 @@ const ProductCard = (props: IProductCard) => {
         const item = {
             id: productId,
             name: title,
+            qty: 1,
             price
         }
         const items = [...cartItems, item]
