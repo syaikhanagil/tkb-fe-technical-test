@@ -12,7 +12,7 @@ const Main = (props: IMain) => {
     return (
         <>
             <Header />
-            <div className="container">
+            <div className="container-fluid">
                 {children}
             </div>
             <Navigation activeMenu={activeMenu} />

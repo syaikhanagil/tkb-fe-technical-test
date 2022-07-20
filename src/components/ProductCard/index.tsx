@@ -14,7 +14,7 @@ const ProductCard = (props: IProductCard) => {
                 <img src={thumb} alt={title} />
             </div>
             <p className="product-title">{title}</p>
-            <p className="product-price">{price}</p>
+            <p className="product-price">{`Rp ${new Intl.NumberFormat().format(price)}`}</p>
         </div>
     )
 }

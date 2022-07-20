@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
 import feather from 'feather-icons';
 import Home from './pages/Home';
 import Report from './pages/Report';

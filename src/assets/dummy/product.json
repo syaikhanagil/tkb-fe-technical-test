@@ -1,26 +1,37 @@
 [
     
     {
+        "id": "food-1",
         "name": "Combo Ayam Geprek B1G1",
+        "price": 26000,
+        "category": "food"
+    },
+    {
+        "id": "food-2",
+        "name": "Ayam Geprek",
+        "price": 20000,
+        "category": "food"
+    },
+    {
+        "id": "food-3",
+        "name": "Ayam Goreng",
         "price": 16000,
         "category": "food"
     },
     {
+        "id": "food-4",
         "name": "Ayam Geprek",
         "price": 16000,
         "category": "food"
     },
     {
+        "id": "food-5",
         "name": "Ayam Geprek",
         "price": 16000,
         "category": "food"
     },
     {
-        "name": "Ayam Geprek",
-        "price": 16000,
-        "category": "food"
-    },
-    {
+        "id": "food-6",
         "name": "Ayam Geprek",
         "price": 16000,
         "category": "food"
