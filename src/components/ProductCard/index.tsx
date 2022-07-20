@@ -15,14 +15,30 @@ const ProductCard = (props: IProductCard) => {
     const dispatch = useDispatch();
     
     const addToCart = (id: string) => {
-        const item = {
-            id: productId,
-            name: title,
-            qty: 1,
-            price
+        const existingItem = cartItems.filter((item: any) => {
+            return item.id === productId;
+        })
+        if (existingItem.length > 0) {
+            const currentItem = cartItems.filter((item: any) => item.id !== productId);
+            const updateItem = {
+                id: productId,
+                name: title,
+                qty: existingItem[0].qty + 1,
+                price
+            }
+            const items = [updateItem, ...currentItem];
+            dispatch(updateCartItem(items));
+
+        } else {
+            const item = {
+                id: productId,
+                name: title,
+                qty: 1,
+                price
+            }
+            const items = [...cartItems, item]
+            dispatch(updateCartItem(items));
         }
-        const items = [...cartItems, item]
-        dispatch(updateCartItem(items));
     }
 
     return (

@@ -11,7 +11,7 @@ const Cart = () => {
             let ttl = 0;
             // eslint-disable-next-line no-plusplus
             for (let i = 0; i < items.length; i++) {
-                ttl += items[i].price;
+                ttl += items[i].price * items[i].qty;
                 setTotal(ttl);
             }
         }
