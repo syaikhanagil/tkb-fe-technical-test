@@ -14,7 +14,7 @@ const ProductCard = (props: IProductCard) => {
     const cartItems = useSelector((state: any) => state.cart.items);
     const dispatch = useDispatch();
     
-    const addToCart = (id: string) => {
+    const addToCart = () => {
         const existingItem = cartItems.filter((item: any) => {
             return item.id === productId;
         })
@@ -42,7 +42,7 @@ const ProductCard = (props: IProductCard) => {
     }
 
     return (
-        <div className="product-card" onClick={() => addToCart(productId)}>
+        <div className="product-card" onClick={() => addToCart()}>
             <div className="product-thumbnail">
                 <img src={thumb} alt={title} />
             </div>

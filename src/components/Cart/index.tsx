@@ -1,31 +1,67 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCartItem } from '../../redux/reducers/cart';
 import Icon from '../Icon';
 
 const Cart = () => {
     const [total, setTotal] = useState(0)
-    const items = useSelector((state: any) => state.cart.items);
+    const cartItems = useSelector((state: any) => state.cart.items);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if (items.length > 0) {
+        if (cartItems.length > 0) {
             let ttl = 0;
             // eslint-disable-next-line no-plusplus
-            for (let i = 0; i < items.length; i++) {
-                ttl += items[i].price * items[i].qty;
+            for (let i = 0; i < cartItems.length; i++) {
+                ttl += cartItems[i].price * cartItems[i].qty;
                 setTotal(ttl);
             }
         }
-    }, [items]);
+    }, [cartItems]);
+
+    const addQty = (productId: string) => {
+        const existingItem = cartItems.filter((item: any) => {
+            return item.id === productId;
+        })
+        if (existingItem.length > 0) {
+            const currentItem = cartItems.filter((item: any) => item.id !== productId);
+            const updateItem = {
+                id: productId,
+                name: existingItem[0].name,
+                qty: existingItem[0].qty + 1,
+                price: existingItem[0].price
+            }
+            const items = [updateItem, ...currentItem];
+            dispatch(updateCartItem(items));
+        }
+    }
+
+    const minQty = (productId: string) => {
+        const existingItem = cartItems.filter((item: any) => {
+            return item.id === productId;
+        })
+        if (existingItem.length > 0 && existingItem[0].qty > 1) {
+            const currentItem = cartItems.filter((item: any) => item.id !== productId);
+            const updateItem = {
+                id: productId,
+                name: existingItem[0].name,
+                qty: existingItem[0].qty - 1,
+                price: existingItem[0].price
+            }
+            const items = [updateItem, ...currentItem];
+            dispatch(updateCartItem(items));
+        }
+    }
 
     return (
         <div className="cart-content">
-            <div className="cart-header">Keranjang: {items.length}</div>
-            {items.length < 1 && (
+            <div className="cart-header">Keranjang: {cartItems.length}</div>
+            {cartItems.length < 1 && (
                 <div className="no-item">
                     Belum Ada Barang Ditambahkan
                 </div>
             )}
-            {items.length > 0 && items.map((i: any, idx: any) => {
+            {cartItems.length > 0 && cartItems.map((i: any, idx: any) => {
                 return (
                     <div key={idx} className="cart-item">
                         <div className="row">
@@ -35,11 +71,11 @@ const Cart = () => {
                             </div>
                             <div className="col-4">
                                 <div className="qty-container">
-                                    <div className="qty-add">
+                                    <div className="qty-add" onClick={() => addQty(i.id)}>
                                         <Icon icon="plus" />
                                     </div>
                                     <span id="qty">{i.qty}</span>
-                                    <div className="qty-minus">
+                                    <div className="qty-minus" onClick={() => minQty(i.id)}>
                                         <Icon icon="minus" />
                                     </div>
                                 </div>
